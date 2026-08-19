@@ -22,7 +22,7 @@ async def shorten_url(
     data: URLCreate,
     conn: asyncpg.Connection = Depends(get_connection)
 ):
-    short_code = await create_short_url(conn,data.original_url)
+    short_code = await create_short_url(conn,str(data.original_url))
 
     return URLResponse(
         short_url=f"{settings.base_url}/{short_code}"

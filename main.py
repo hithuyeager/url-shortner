@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from contextlib import contextmanager
+from contextlib import asynccontextmanager
 
 from db.database import connect_to_db
 from api.routes import router
 
-@contextmanager
+@asynccontextmanager
 async def lifespan(app: FastAPI):
-    app.state.pool = connect_to_db()
+    app.state.pool = await connect_to_db()
     yield
     await app.state.pool.close()
 

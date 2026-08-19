@@ -4,7 +4,7 @@ class URLCreate(BaseModel):
     original_url: HttpUrl
 
 class URLResponse(BaseModel):
-    short_url: str
+    short_url: HttpUrl
 
 class URLNotFoundError(Exception):
     pass
